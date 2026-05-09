@@ -11,6 +11,7 @@ class Incident(Base):
     severity =Column(String,nullable=False)
     status=Column(String, default="open")
     latitude=Column(Float,nullable=False)
-    longitude=Column(Float,nullable=False)
+    
+    longitude=Column(Float,nullable=False)   
     created_at = Column(DateTime(timezone=True), server_default=func.now())
   ## created_at=Column(DateTime(timezone=True), server_default=func.now())
