@@ -11,7 +11,7 @@ class IncidentCreate(BaseModel):
     latitude:float
     longitude:float
 
-    class IncidentResponse(BaseModel):
+class IncidentResponse(BaseModel):
         id :int
         title :str
         description:Optional[str] =None
@@ -23,5 +23,5 @@ class IncidentCreate(BaseModel):
         created_at:datetime
 
 
-    class Config:
+class Config:
         from_attributes=True

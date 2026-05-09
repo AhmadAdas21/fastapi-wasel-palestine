@@ -1,11 +1,29 @@
-from fastapi import FastApi
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
 
-router=routerAPI()
+from app.db.database import get_db
+from app.models.incident import Incident
+from app.schemas.incident_schema import IncidentCreate, IncidentResponse
 
-@router.get("/")
-def get_incidents():
-    return {"message": "List of road incidents will appear here"}
 
-@router.post("/")
-def create_incident():
-    return{"message":"your incident created successfully"}
+router = APIRouter()
+
+
+@router.get("/", response_model=list[IncidentResponse])
+def get_incidents(db: Session = Depends(get_db)):
+    incidents = db.query(Incident).all()
+    return incidents
+
+
+@router.post("/", response_model=IncidentResponse)
+def create_incident(
+    incident: IncidentCreate,
+    db: Session = Depends(get_db)
+):
+    new_incident = Incident(**incident.model_dump())
+
+    db.add(new_incident)
+    db.commit()
+    db.refresh(new_incident)
+
+    return new_incident

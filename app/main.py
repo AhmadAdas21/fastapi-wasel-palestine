@@ -1,6 +1,12 @@
-from fastapi import FastApi
+from fastapi import FastAPI
+from app.api.v1.api import api_router
+from app.db.database import Base, engine
+from app.models import incident
 
-app=fastapi(
+
+
+Base.metadata.create_all(bind=engine)
+app=FastAPI(
 title="Wasel Palestine API",
     description="Backend API for Wasel Palestine project",
     version="1.0.0")
