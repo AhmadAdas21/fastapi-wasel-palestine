@@ -20,8 +20,11 @@ class Checkpoint(Base):
     current_status = Column(String, default="open", nullable=False)
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+  
 
-    status_history = relationship(
+
+
+    status_history = relationship  (
         "CheckpointStatusHistory",
         back_populates="checkpoint",
         cascade="all, delete-orphan"
