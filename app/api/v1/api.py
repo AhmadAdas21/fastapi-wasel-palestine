@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import incidents, checkpoints
+from app.api.v1.endpoints import incidents, checkpoints, reports
 
 api_router = APIRouter()
 
@@ -14,4 +14,10 @@ api_router.include_router(
     checkpoints.router,
     prefix="/checkpoints",
     tags=["Checkpoints"],
+)
+
+api_router.include_router(
+    reports.router,
+    prefix="/reports",
+    tags=["Reports"],
 )
