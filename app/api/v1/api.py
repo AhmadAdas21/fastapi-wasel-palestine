@@ -21,3 +21,9 @@ api_router.include_router(
     prefix="/reports",
     tags=["Reports"],
 )
+
+api_router.include_router(
+    alerts.router,
+    prefix="/alerts",
+    tags=["Alerts"],
+)

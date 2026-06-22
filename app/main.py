@@ -4,6 +4,7 @@ from app.db.database import Base, engine
 from app.models import incident
 from app.models import report
 from app.models import alert
+from app.models import checkpoint
 ##Base.metadata.create_all(bind=engine)
 
 Base.metadata.create_all(bind=engine)
