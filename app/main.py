@@ -3,6 +3,7 @@ from app.api.v1.api import api_router
 from app.db.database import Base, engine
 from app.models import incident
 from app.models import report
+from app.models import alert
 ##Base.metadata.create_all(bind=engine)
 
 Base.metadata.create_all(bind=engine)
@@ -16,7 +17,7 @@ title="Wasel Palestine API",
 
 
 
- 
+
 app.include_router(api_router, prefix="/api/v1")
 
 
