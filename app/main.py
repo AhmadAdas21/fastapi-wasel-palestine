@@ -1,31 +1,30 @@
 from fastapi import FastAPI
+
 from app.api.v1.api import api_router
 from app.db.database import Base, engine
+
 from app.models import incident
+from app.models import checkpoint
 from app.models import report
 from app.models import alert
-from app.models import checkpoint
-##Base.metadata.create_all(bind=engine)
+from app.models import user
+
 
 Base.metadata.create_all(bind=engine)
-app=FastAPI(
-title="Wasel Palestine API",
+
+app = FastAPI(
+    title="Wasel Palestine API",
     description="Backend API for Wasel Palestine project",
-    version="1.0.0")
-
- 
-
-
-
-
+    version="1.0.0",
+)
 
 app.include_router(api_router, prefix="/api/v1")
-
 
 
 @app.get("/")
 def home():
     return {"message": "Welcome to Wasel Palestine:_:"}
+
 
 @app.get("/health")
 def health_check():

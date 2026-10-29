@@ -1,8 +1,15 @@
+
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import incidents, checkpoints, reports, alerts
+from app.api.v1.endpoints import incidents, checkpoints, reports, alerts, auth
 
 api_router = APIRouter()
+
+api_router.include_router(
+    auth.router,
+    prefix="/auth",
+    tags=["Auth"],
+)
 
 api_router.include_router(
     incidents.router,
